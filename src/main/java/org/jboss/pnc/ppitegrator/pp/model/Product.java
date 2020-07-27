@@ -21,18 +21,13 @@ import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Product {
-    @NotNull
-    @Positive
-    private Long id;
-
+public class Product extends BaseInfo {
     @NotNull
     @Positive
     private Long bu;
@@ -48,15 +43,8 @@ public class Product {
     @JsonProperty("product_group_name")
     private String productGroupName;
 
-    @NotEmpty
-    private String name;
-
-    @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z1-9]+[\\w\\.-]*$")
-    @Size(max = 128)
-    private String shortname;
-
     @NotNull
+    @Size(max = 128)
     private String bugzilla;
 
     @NotNull
@@ -65,34 +53,13 @@ public class Product {
     @NotNull
     private Set<Release> releases;
 
-    @JsonProperty("is_project_bool")
-    @NotNull
-    private Boolean isProjectBool;
-
-    @NotNull
-    private Boolean canceled;
-
-    @NotNull
-    private Boolean published;
-
     @JsonProperty("not_maintained_since")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate notMaintainedSince;
 
     @NotNull
-    private String description;
-
-    @NotNull
     @Positive
     private Integer phase;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getBu() {
         return bu;
@@ -126,22 +93,6 @@ public class Product {
         this.productGroupName = productGroupName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShortname() {
-        return shortname;
-    }
-
-    public void setShortname(String shortname) {
-        this.shortname = shortname;
-    }
-
     public String getBugzilla() {
         return bugzilla;
     }
@@ -166,44 +117,12 @@ public class Product {
         this.releases = releases;
     }
 
-    public Boolean getIsProjectBool() {
-        return isProjectBool;
-    }
-
-    public void setIsProjectBool(Boolean isProjectBool) {
-        this.isProjectBool = isProjectBool;
-    }
-
-    public Boolean getCanceled() {
-        return canceled;
-    }
-
-    public void setCanceled(Boolean canceled) {
-        this.canceled = canceled;
-    }
-
-    public Boolean getPublished() {
-        return published;
-    }
-
-    public void setPublished(Boolean published) {
-        this.published = published;
-    }
-
     public LocalDate getNotMaintainedSince() {
         return notMaintainedSince;
     }
 
     public void setNotMaintainedSince(LocalDate notMaintainedSince) {
         this.notMaintainedSince = notMaintainedSince;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Integer getPhase() {

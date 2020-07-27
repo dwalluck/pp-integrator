@@ -21,18 +21,12 @@ import java.util.Set;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Release {
-    @NotNull
-    @Positive
-    private Long id;
-
+public class Release extends BaseInfo {
     @JsonProperty("bu_group")
     @NotNull
     private String buGroup;
@@ -84,11 +78,6 @@ public class Release {
     @NotNull
     private String nameInclMaint;
 
-    @NotEmpty
-    @Pattern(regexp = "^[a-zA-Z1-9]+[\\w\\.-]*$")
-    @Size(max = 128)
-    private String shortname;
-
     @JsonProperty("ga_date")
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate gaDate;
@@ -98,12 +87,6 @@ public class Release {
 
     @NotNull
     private String cpe;
-
-    @NotNull
-    private Boolean canceled;
-
-    @NotNull
-    private Boolean published;
 
     @JsonProperty("not_maintained_since")
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -135,10 +118,6 @@ public class Release {
     @NotNull
     private String bzNvrFlag;
 
-    @JsonProperty("is_project_bool")
-    @NotNull
-    private Boolean isProjectBool;
-
     @JsonProperty("inherit_comms")
     @NotNull
     private Boolean inheritComms;
@@ -146,9 +125,6 @@ public class Release {
     @JsonProperty("inherit_docs")
     @NotNull
     private Boolean inheritDocs;
-
-    @NotNull
-    private String description;
 
     @JsonProperty("schedule_mode")
     @NotNull
@@ -205,14 +181,6 @@ public class Release {
     @JsonProperty("main_schedule_change_msg")
     @NotNull
     private String mainScheduleChangeMsg;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getBuGroup() {
         return buGroup;
@@ -302,28 +270,12 @@ public class Release {
         this.productName = productName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getNameInclMaint() {
         return nameInclMaint;
     }
 
     public void setNameInclMaint(String nameInclMaint) {
         this.nameInclMaint = nameInclMaint;
-    }
-
-    public String getShortname() {
-        return shortname;
-    }
-
-    public void setShortname(String shortname) {
-        this.shortname = shortname;
     }
 
     public LocalDate getGaDate() {
@@ -348,22 +300,6 @@ public class Release {
 
     public void setCpe(String cpe) {
         this.cpe = cpe;
-    }
-
-    public Boolean getCanceled() {
-        return canceled;
-    }
-
-    public void setCanceled(Boolean canceled) {
-        this.canceled = canceled;
-    }
-
-    public Boolean getPublished() {
-        return published;
-    }
-
-    public void setPublished(Boolean published) {
-        this.published = published;
     }
 
     public LocalDate getNotMaintainedSince() {
@@ -430,14 +366,6 @@ public class Release {
         this.bzNvrFlag = bzNvrFlag;
     }
 
-    public Boolean getProjectBool() {
-        return isProjectBool;
-    }
-
-    public void setProjectBool(Boolean projectBool) {
-        isProjectBool = projectBool;
-    }
-
     public Boolean getInheritComms() {
         return inheritComms;
     }
@@ -452,14 +380,6 @@ public class Release {
 
     public void setInheritDocs(Boolean inheritDocs) {
         this.inheritDocs = inheritDocs;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public Integer getScheduleMode() {
